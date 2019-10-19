@@ -30,16 +30,6 @@ const injectContext = PassedComponent => {
 			 * state.loadSomeData(); <---- calling this function from the flux.js actions
 			 *
 			 **/
-
-			fetch("https://assets.breatheco.de/apis/fake/contact/agenda")
-				.then(resp => {
-					if (resp.ok) {
-						return resp.json();
-					}
-				})
-				.then(data => {
-					this.setState({ delta: data.results });
-				});
 		}, []);
 
 		// the initial value for the context its not null anymore, but the current state of this component,

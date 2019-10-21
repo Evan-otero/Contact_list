@@ -22,6 +22,16 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
+			fetch("https://assets.breatheco.de/apis/fake/contact/agenda/marcosAgenda")
+				.then(resp => {
+					if (resp.ok) {
+						return resp.json();
+					}
+				})
+				.then(data => {
+					console.log(data);
+				});
+
 			/**
 			 * EDIT THIS!
 			 * This function is the equivalent to "window.onLoad", it only run once on the entire application lifetime

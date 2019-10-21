@@ -23,7 +23,7 @@ export default class Contacts extends React.Component {
 					</p>
 					<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 						<ul className="list-group pull-down" id="contact-list">
-							<ContactCard onDelete={() => this.setState({ showModal: true })} />
+							<ContactCard />
 						</ul>
 					</div>
 				</div>

@@ -29,7 +29,10 @@ export default class Contacts extends React.Component {
 						<ul className="list-group pull-down" id="contact-list">
 							<Consumer>
 								{({ store, actions }) => {
-									return <ContactCard onDelete={() => this.setState({ showModal: true })} />;
+									return console.log(store.alpha);
+									return store.alpha.map((name, index) => {
+										<ContactCard />;
+									});
 								}}
 							</Consumer>
 						</ul>

@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import ContactCard from "../component/ContactCard.js";
 import Modal from "../component/Modal";
 import getState from "../store/flux";
-import { StoreWrapper } from "../store/appContext.js";
+import Provider, { Consumer } from "../store/appContext.js";
+import appContext from "../store/appContext.js";
+import injectContex from "../store/appContext.js";
+
 export default class Contacts extends React.Component {
 	constructor() {
 		super();
@@ -15,23 +18,25 @@ export default class Contacts extends React.Component {
 
 	render() {
 		return (
-			<StoreWrapper>
-				<div className="container">
-					<div>
-						<p className="text-right my-3">
-							<Link className="btn btn-success" to="/add">
-								Add new contact
-							</Link>
-						</p>
-						<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
-							<ul className="list-group pull-down" id="contact-list">
-								<ContactCard />
-							</ul>
-						</div>
+			<div className="container">
+				<div>
+					<p className="text-right my-3">
+						<Link className="btn btn-success" to="/add">
+							Add new contact
+						</Link>
+					</p>
+					<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
+						<ul className="list-group pull-down" id="contact-list">
+							<Consumer>
+								{({ store, actions }) => {
+									return <ContactCard onDelete={() => this.setState({ showModal: true })} />;
+								}}
+							</Consumer>
+						</ul>
 					</div>
-					<Modal show={this.state.showModal} onClose={() => this.setState({ showModal: false })} />
 				</div>
-			</StoreWrapper>
+				<Modal show={this.state.showModal} onClose={() => this.setState({ showModal: false })} />
+			</div>
 		);
 	}
 }

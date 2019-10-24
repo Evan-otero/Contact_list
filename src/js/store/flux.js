@@ -26,11 +26,16 @@ const getState = ({ getStore, setStore }) => {
 		actions: {
 			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()
-			createcontact: () => {
-				let temp = blank;
-				let temp2 = { full_name: "$", email: "", phone: "", address: "" };
-				temp.push(temp2);
-				setStore({ blank: temp2 });
+			createContact: (name, address, phone, email) => {
+				console.log("name", name, address, phone, email);
+				const store = getStore();
+				setStore({
+					alpha: store.alpha.concat({ full_name: name, address: address, phone: phone, email: email })
+				});
+				// let temp = blank;
+				// let temp2 = { full_name: "$", email: "", phone: "", address: "" };
+				// temp.push(temp2);
+				// setStore({ blank: temp2 });
 			},
 			//editcontact: index => {
 			//	let temp = blank[index];

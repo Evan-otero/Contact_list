@@ -7,12 +7,12 @@ import { appContext } from "../store/appContext.js";
 import { Consumer } from "../store/appContext";
 
 class ContactCard extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {};
 	}
 
-	render() {
+	render(props) {
 		return (
 			<Consumer>
 				{({ store, actions }) => {
@@ -35,7 +35,7 @@ class ContactCard extends React.Component {
 											<i className="fas fa-trash-alt" />
 										</button>
 									</div>
-									<label className="name lead">Mike Anamendolla</label>
+									<label className="name lead">{this.props.name}</label>
 									<br />
 									<i className="fas fa-map-marker-alt text-muted mr-3" />
 									<span className="text-muted">5842 Hillcrest Rd</span>
@@ -71,7 +71,11 @@ class ContactCard extends React.Component {
  **/
 ContactCard.propTypes = {
 	history: PropTypes.object,
-	onDelete: PropTypes.func
+	onDelete: PropTypes.func,
+	email: PropTypes.string,
+	phone: PropTypes.string,
+	address: PropTypes.string,
+	name: PropTypes.string
 };
 
 /**

@@ -26,6 +26,18 @@ const getState = ({ getStore, setStore }) => {
 		actions: {
 			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()
+			fetchContacts: () => {
+				const store = getStore();
+				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/evan_agenda")
+					.then(resp => {
+						if (resp.ok) {
+							return resp.json();
+						}
+					})
+					.then(data => {
+						setstore({ alpha: data });
+					});
+			},
 			createContact: (name, address, phone, email) => {
 				console.log("name", name, address, phone, email);
 				const store = getStore();
@@ -63,17 +75,6 @@ const getState = ({ getStore, setStore }) => {
 				console.log(del);
 				setStore({ alpha: temp });
 			}
-			//getcontacts: ()=>{
-			//   fetch("https://assets.breatheco.de/apis/fake/contact/agenda/marcosAgenda")
-			//	.then(resp => {
-			//		if (resp.ok) {
-			//			return resp.json();
-			//		}
-			//	})
-			//	.then(data => {
-			//		setstore(data);
-			//	});
-			//}
 		}
 	};
 };

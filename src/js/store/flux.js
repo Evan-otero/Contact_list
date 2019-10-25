@@ -28,14 +28,17 @@ const getState = ({ getStore, setStore }) => {
 			// Remember to use the scope: scope.state.store & scope.setState()
 			fetchContacts: () => {
 				const store = getStore();
-				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/evan_agenda")
+				const url = "https://assets.breatheco.de/apis/fake/contact/agenda/evan_agenda";
+				let response1 = fetch(url, {
+					method: "Get"
+				})
 					.then(resp => {
 						if (resp.ok) {
 							return resp.json();
 						}
 					})
 					.then(data => {
-						setstore({ alpha: data });
+						setStore({ alpha: data });
 					});
 			},
 			createContact: (name, address, phone, email) => {

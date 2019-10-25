@@ -33,9 +33,9 @@ export default class Contacts extends React.Component {
 										return (
 											<ContactCard
 												key={index}
+												phone={store.alpha[index].phone}
 												name={store.alpha[index].full_name}
 												email={store.alpha[index].email}
-												phone={store.alpha[index].phone}
 												address={store.alpha[index].address}
 												index={index}
 											/>

@@ -22,14 +22,7 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
-			//fetch("https://assets.breatheco.de/apis/fake/contact/agenda/evan_agenda")
-			//	.then(resp => {
-			//		console.log("okay");
-			//		return resp.json();
-			//	})
-			//	.then(data => {
-			//		setState({ store: data });
-			//	});
+			state.actions.fetchContacts();
 		}, []);
 
 		/**

@@ -28,16 +28,16 @@ export default class Contacts extends React.Component {
 					<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 						<ul className="list-group pull-down" id="contact-list">
 							<Consumer>
-								{({ store }) => {
-									console.log(store.alpha[1].full_name);
+								{({ store, actions }) => {
 									return store.alpha.map((name, index) => {
 										return (
 											<ContactCard
 												key={index}
 												name={store.alpha[index].full_name}
-												//email={store.alpha.email}
-												//phone={store.alpha.phone}
-												//address={store.alpha.address}
+												email={store.alpha[index].email}
+												phone={store.alpha[index].phone}
+												address={store.alpha[index].address}
+												index={index}
 											/>
 										);
 									});

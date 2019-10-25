@@ -53,19 +53,21 @@ export default class AddContact extends React.Component {
 						<Consumer>
 							{({ store, actions }) => {
 								return (
-									<button
-										type="button"
-										onClick={() =>
-											actions.createContact(
-												this.state.name,
-												this.state.address,
-												this.state.phone,
-												this.state.email
-											)
-										}
-										className="btn btn-primary form-control">
-										save
-									</button>
+									<Link className="mt-3 w-100 text-center" to="/">
+										<button
+											type="button"
+											onClick={() =>
+												actions.createContact(
+													this.state.name,
+													this.state.address,
+													this.state.phone,
+													this.state.email
+												)
+											}
+											className="btn btn-primary form-control">
+											save
+										</button>
+									</Link>
 								);
 							}}
 						</Consumer>

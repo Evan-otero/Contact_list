@@ -32,25 +32,36 @@ const getState = ({ getStore, setStore }) => {
 				setStore({
 					alpha: store.alpha.concat({ full_name: name, address: address, phone: phone, email: email })
 				});
-				// let temp = blank;
-				// let temp2 = { full_name: "$", email: "", phone: "", address: "" };
-				// temp.push(temp2);
-				// setStore({ blank: temp2 });
 			},
-			//editcontact: index => {
-			//	let temp = blank[index];
-			//	temp.full_name = blank1;
-			//	temp.email = blank2;
-			//	temp.phone = blank3;
-			//	temp.address = blank4;
-			//	setStore(${blank[index] = temp});
-			//},
-			deletecontact: del => {
-				let temp = blank;
-				temp.filter((name, index) => {
-					del != index;
+			editContact: (name, address, phone, email, index) => {
+				console.log(index);
+				const store = getStore();
+				let editedStore = store.alpha
+					.slice(0, index)
+
+					.concat({
+						...store.alpha[index],
+						full_name: name,
+						email: email,
+						address: address,
+						phone: phone
+					})
+					.concat(store.alpha.slice(index + 1));
+				setStore({ alpha: editedStore });
+			},
+
+			deleteContact: del => {
+				const store = getStore();
+
+				let filteredStore = store.alpha;
+				let temp = [];
+				console.log(filteredStore);
+				filteredStore.filter((name, index) => {
+					if (del != index) temp.push(name);
 				});
-				setStore({ blank: temp });
+				console.log(temp);
+				console.log(del);
+				setStore({ alpha: temp });
 			}
 			//getcontacts: ()=>{
 			//   fetch("https://assets.breatheco.de/apis/fake/contact/agenda/marcosAgenda")

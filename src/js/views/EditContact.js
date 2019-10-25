@@ -1,14 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Consumer } from "../store/appContext";
+import PropTypes from "prop-types";
 
 export default class EditContact extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = { name: "" };
+	constructor(props, { match }) {
+		super(props, { match });
+		this.state = {
+			name: "",
+			email: "",
+			phone: "",
+			address: "",
+			index: 0
+		};
 	}
 
-	render() {
+	render(props) {
 		return (
 			<div className="container">
 				<div>
@@ -20,30 +27,52 @@ export default class EditContact extends React.Component {
 								onChange={e => this.setState({ name: e.target.value })}
 								type="text"
 								className="form-control"
-								placeholder="Full Name"
+								placeholder={this.state.name}
 							/>
 						</div>
 						<div className="form-group">
 							<label>Email</label>
-							<input type="email" className="form-control" placeholder="Enter email" />
+							<input
+								onChange={e => this.setState({ email: e.target.value })}
+								type="email"
+								className="form-control"
+							/>
 						</div>
 						<div className="form-group">
 							<label>Phone</label>
-							<input type="phone" className="form-control" placeholder="Enter phone" />
+							<input
+								onChange={e => this.setState({ phone: e.target.value })}
+								type="phone"
+								className="form-control"
+							/>
 						</div>
 						<div className="form-group">
 							<label>Address</label>
-							<input type="text" className="form-control" placeholder="Enter address" />
+							<input
+								onChange={e => this.setState({ address: e.target.value })}
+								type="text"
+								className="form-control"
+							/>
 						</div>
 						<Consumer>
 							{({ store, actions }) => {
 								return (
-									<button
-										type="button"
-										onClick={() => actions.createContact(this.state.name)}
-										className="btn btn-primary form-control">
-										save
-									</button>
+									<Link className="mt-3 w-100 text-center" to="/">
+										<button
+											type="button"
+											onClick={() =>
+												actions.editContact(
+													this.state.name,
+													this.state.address,
+													this.state.phone,
+													this.state.email,
+													this.state.index
+												)
+											}
+											className="btn btn-primary form-control">
+											save
+										</button>
+									</Link>
 								);
 							}}
 						</Consumer>
@@ -56,3 +85,11 @@ export default class EditContact extends React.Component {
 		);
 	}
 }
+
+EditContact.propTypes = {
+	email: PropTypes.string,
+	phone: PropTypes.string,
+	address: PropTypes.string,
+	name: PropTypes.string,
+	match: PropTypes.object
+};

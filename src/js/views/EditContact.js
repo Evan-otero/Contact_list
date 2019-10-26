@@ -11,7 +11,7 @@ export default class EditContact extends React.Component {
 			email: "",
 			phone: "",
 			address: "",
-			index: 0
+			index: this.props.match.params.theid
 		};
 	}
 

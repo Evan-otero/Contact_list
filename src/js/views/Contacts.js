@@ -21,9 +21,15 @@ export default class Contacts extends React.Component {
 			<div className="container">
 				<div>
 					<p className="text-right my-3">
-						<Link className="btn btn-success" to="/add">
-							Add new contact
-						</Link>
+						<Consumer>
+							{({ store, actions }) => {
+								return (
+									<Link className="btn btn-success" to={`/add/${store.alpha.length}`}>
+										Add new contact
+									</Link>
+								);
+							}}
+						</Consumer>
 					</p>
 					<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 						<ul className="list-group pull-down" id="contact-list">

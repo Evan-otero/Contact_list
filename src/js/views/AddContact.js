@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Consumer } from "../store/appContext";
+import PropTypes from "prop-types";
 
 export default class AddContact extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { name: "", email: "", phone: "", address: "" };
+		this.state = { name: "", email: "", phone: "", address: "", index: this.props.match.params.theid };
 	}
 
 	render() {
@@ -80,3 +81,10 @@ export default class AddContact extends React.Component {
 		);
 	}
 }
+AddContact.propTypes = {
+	email: PropTypes.string,
+	phone: PropTypes.string,
+	address: PropTypes.string,
+	name: PropTypes.string,
+	match: PropTypes.object
+};

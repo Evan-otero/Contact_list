@@ -35,7 +35,9 @@ class ContactCard extends React.Component {
 											</button>
 										</Link>
 
-										<button className="btn" onClick={() => actions.deleteContact(this.state.del)}>
+										<button
+											className="btn"
+											onClick={() => actions.deleteContact(this.state.del, this.props.id)}>
 											<i className="fas fa-trash-alt" />
 										</button>
 									</div>
@@ -79,7 +81,8 @@ ContactCard.propTypes = {
 	phone: PropTypes.string,
 	address: PropTypes.string,
 	name: PropTypes.string,
-	index: PropTypes.number
+	index: PropTypes.number,
+	id: PropTypes.string
 };
 
 /**

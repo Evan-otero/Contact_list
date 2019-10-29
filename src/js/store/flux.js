@@ -65,10 +65,16 @@ const getState = ({ getStore, setStore }) => {
 				const url = `https://assets.breatheco.de/apis/fake/contact/`;
 				let response1 = fetch(url, {
 					method: "POST",
-					body: JSON.stringify(store.alpha[store.alpha.length - 1]),
 					headers: {
 						"Content-Type": "application/json"
-					}
+					},
+					body: JSON.stringify({
+						full_name: name,
+						email: email,
+						agenda_slug: "evan_agenda",
+						address: address,
+						phone: phone
+					})
 				})
 					.then(res => res.json())
 					.then(response => console.log("Success:", JSON.stringify(response)))
@@ -103,7 +109,7 @@ const getState = ({ getStore, setStore }) => {
 					.catch(error => console.error("Error", error));
 			},
 
-			deleteContact: del => {
+			deleteContact: (del, id) => {
 				const store = getStore();
 
 				let filteredStore = store.alpha;
@@ -114,6 +120,13 @@ const getState = ({ getStore, setStore }) => {
 				});
 				console.log(temp);
 				console.log(del);
+				const url = `https://assets.breatheco.de/apis/fake/contact/${id}`;
+				let response1 = fetch(url, {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json"
+					}
+				});
 				setStore({ alpha: temp });
 			}
 		}

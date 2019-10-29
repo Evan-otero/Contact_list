@@ -44,6 +44,7 @@ export default class Contacts extends React.Component {
 												email={store.alpha[index].email}
 												address={store.alpha[index].address}
 												index={index}
+												id={store.alpha[index].id}
 											/>
 										);
 									});

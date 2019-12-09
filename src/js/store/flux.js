@@ -63,6 +63,7 @@ const getState = ({ getStore, setStore }) => {
 					alpha: store.alpha.concat({ full_name: name, address: address, phone: phone, email: email })
 				});
 				const url = `https://assets.breatheco.de/apis/fake/contact/`;
+
 				let response1 = fetch(url, {
 					method: "POST",
 					headers: {
